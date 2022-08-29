@@ -2,343 +2,46 @@ const canvas = document.querySelector("#myCanvas")
 // console.log(canvas)
 const ctx = canvas.getContext('2d')
 
-// The first horizontal line
-ctx.beginPath();
-ctx.moveTo(100,0);
-ctx.lineTo(100,500);
-ctx.stroke();
-ctx.closePath();
-
-// The second horizontal line
-ctx.beginPath();
-ctx.moveTo(200,0);
-ctx.lineTo(200,500);
-ctx.stroke();
-ctx.closePath();
-
-// The third horizontal line
-ctx.beginPath();
-ctx.moveTo(300,0);
-ctx.lineTo(300,500);
-ctx.stroke();
-ctx.closePath();
-
-// The fourth horizontal line
-ctx.beginPath();
-ctx.moveTo(400,0);
-ctx.lineTo(400,500);
-ctx.stroke();
-ctx.closePath();
-
-// The fifth horizontal line
-ctx.beginPath();
-ctx.moveTo(500,0);
-ctx.lineTo(500,500);
-ctx.stroke();
-ctx.closePath();
-
-// The sixth horizontal line
-ctx.beginPath();
-ctx.moveTo(600,0);
-ctx.lineTo(600,500);
-ctx.stroke();
-ctx.closePath();
-
-// The seventh horizontal line
-ctx.beginPath();
-ctx.moveTo(700,0);
-ctx.lineTo(700,500);
-ctx.stroke();
-ctx.closePath();
-
-// ---------------------------
-
-// Vertical Line 01
-ctx.beginPath();
-ctx.moveTo(0, 71);
-ctx.lineTo(800, 71);
-ctx.stroke();
-ctx.closePath();
-
-// Vertical Line 02
-ctx.beginPath();
-ctx.moveTo(0, 142);
-ctx.lineTo(800, 142);
-ctx.stroke();
-ctx.closePath();
-
-// Vertical Line 03
-ctx.beginPath();
-ctx.moveTo(0, 213);
-ctx.lineTo(800, 213);
-ctx.stroke();
-ctx.closePath();
-
-// Vertical Line 04
-ctx.beginPath();
-ctx.moveTo(0, 284);
-ctx.lineTo(800, 284);
-ctx.stroke();
-ctx.closePath();
-
-// Vertical Line 05
-ctx.beginPath();
-ctx.moveTo(0, 355);
-ctx.lineTo(800, 355);
-ctx.stroke();
-ctx.closePath();
-
-// Vertical Line 06
-ctx.beginPath();
-ctx.moveTo(0, 426);
-ctx.lineTo(800, 426);
-ctx.stroke();
-ctx.closePath();
-
-
-
-
-
-
-
-
 // Initializing the main game space with 7 columns and 8 rows (56 positions).
 console.log('WASSUPPP')
-
-let tower = [
-    row1 = [{
-            positionX: 0,
-            positionY: 0
-        },
-        {
-            positionX: 0,
-            positionY: 1
-        },
-        {
-            positionX: 0,
-            positionY: 2
-        },
-        {
-            positionX: 0,
-            positionY: 3
-        },
-        {
-            positionX: 0,
-            positionY: 4
-        },
-        {
-            positionX: 0,
-            positionY: 5
-        },
-        {
-            positionX: 0,
-            positionY: 6
-        },
-        {
-            positionX: 0,
-            positionY: 7
-        }
-    ],
-    row2 = [{
-            positionX: 1,
-            positionY: 0
-        },
-        {
-            positionX: 1,
-            positionY: 1
-        }, {
-            positionX: 1,
-            positionY: 2
-        }, {
-            positionX: 1,
-            positionY: 3
-        }, {
-            positionX: 1,
-            positionY: 4
-        }, {
-            positionX: 1,
-            positionY: 5
-        }, {
-            positionX: 1,
-            positionY: 6
-        },
-        {
-            positionX: 1,
-            positionY: 7
-        }
-    ],
-
-    row3 = [{
-            positionX: 2,
-            positionY: 0
-        },
-        {
-            positionX: 2,
-            positionY: 1
-        },
-        {
-            positionX: 2,
-            positionY: 2
-        },
-        {
-            positionX: 2,
-            positionY: 3
-        },
-        {
-            positionX: 2,
-            positionY: 4
-        },
-        {
-            positionX: 2,
-            positionY: 5
-        },
-        {
-            positionX: 2,
-            positionY: 6
-        },
-        {
-            positionX: 2,
-            positionY: 7
-        }
-
-    ],
-    row4 = [{
-            positionX: 3,
-            positionY: 0
-        },
-        {
-            positionX: 3,
-            positionY: 1
-        },
-        {
-            positionX: 3,
-            positionY: 2
-        },
-        {
-            positionX: 3,
-            positionY: 3
-        },
-        {
-            positionX: 3,
-            positionY: 4
-        },
-        {
-            positionX: 3,
-            positionY: 5
-        },
-        {
-            positionX: 3,
-            positionY: 6
-        },
-        {
-            positionX: 3,
-            positionY: 7
-        }
-    ],
-
-    row5 = [{
-            positionX: 4,
-            positionY: 0
-        },
-        {
-            positionX: 4,
-            positionY: 1
-        },
-        {
-            positionX: 4,
-            positionY: 2
-        },
-        {
-            positionX: 4,
-            positionY: 3
-        },
-        {
-            positionX: 4,
-            positionY: 4
-        },
-        {
-            positionX: 4,
-            positionY: 5
-        },
-        {
-            positionX: 4,
-            positionY: 6
-        },
-        {
-            positionX: 4,
-            positionY: 7
-        }
-    ],
-
-    row6 = [{
-            positionX: 5,
-            positionY: 0
-        },
-        {
-            positionX: 5,
-            positionY: 1
-        },
-        {
-            positionX: 5,
-            positionY: 2
-        },
-        {
-            positionX: 5,
-            positionY: 3
-        },
-        {
-            positionX: 5,
-            positionY: 4
-        },
-        {
-            positionX: 5,
-            positionY: 5
-        },
-        {
-            positionX: 5,
-            positionY: 6
-        },
-        {
-            positionX: 5,
-            positionY: 7
-        }
-    ],
-
-    row7 = [{
-            positionX: 6,
-            positionY: 0
-        },
-        {
-            positionX: 6,
-            positionY: 1
-        },
-        {
-            positionX: 6,
-            positionY: 2
-        },
-        {
-            positionX: 6,
-            positionY: 3
-        },
-        {
-            positionX: 6,
-            positionY: 4
-        },
-        {
-            positionX: 6,
-            positionY: 5
-        },
-        {
-            positionX: 6,
-            positionY: 6
-        },
-        {
-            positionX: 6,
-            positionY: 7
-        }
-    ],
-
+let towerArray = [
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
 ]
+
+console.log(towerArray[2][0])
+
+// for loop to draw vertical lines
+for (let x = 0; x < towerArray.length; x++) {
+    strokeLineHoriz(ctx, x + 1) // dont want the array to start at 0
+}
+
+function strokeLineHoriz(ctx, x) {
+    ctx.beginPath();
+    ctx.moveTo(x * 100, 0); //100px is the space between each column
+    ctx.lineTo(x * 100, 500);
+    ctx.stroke();
+    ctx.closePath();
+
+}
+
+// for loop to draw horizontal lines
+for (let y = 0; y < towerArray[0].length; y++) {
+    stokeLineVert(ctx, y + 1)
+}
+
+function stokeLineVert(ctx, y) {
+    ctx.beginPath();
+    ctx.moveTo(0, y * 71.4);
+    ctx.lineTo(800, y * 71.4);
+    ctx.stroke();
+    ctx.closePath();
+}
 
 // Initializing both players
 const playerOne = {
