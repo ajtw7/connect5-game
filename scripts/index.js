@@ -1,3 +1,5 @@
+// Initializing the main game space with 7 columns and 8 rows (56 positions).
+
 let tower = [
     row1 = [{
             positionX: 0,
@@ -232,3 +234,54 @@ let tower = [
     ],
 
 ]
+
+// Initializing both players
+const playerOne = {
+    medallionsPlayed: 0,
+    stack: function () {},
+}
+
+const playerTwo = {
+    medallionsPlayed: 0,
+    stack: function () {},
+}
+
+// Initializing a class for the coins that used for each space
+class medallion {
+    constructor(id, color) {
+        this.id = id
+        this.color = color
+        this.positionX = 0
+        this.positionY = 0
+
+    }
+}
+
+const scoreboard = {
+    medallionsPlayed: 0,
+    spacesRemaining: 56
+}
+
+
+
+/* 
+Conditionals
+
+1) if playerOne, drops a medallion, into a space, playerTwo must go next.
+        1a) scoreboard must be updated
+
+2) if any column/row is full, player must drop medallion elsewhere.
+    2a) if a space is occupied, it must be flipped from "null" to TRUE 
+
+3) if player positions 5 medallions of the same color in a row, said player win the game
+
+4) if medallionsPlayed = 56 or if spacesRemaining = 0, the game is over
+
+5)
+
+
+
+
+
+
+*/
