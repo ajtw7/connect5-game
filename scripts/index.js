@@ -59,6 +59,11 @@ for (let i = 0; i < towerArray.length; i++) {
     for (let j = 0; j < towerArray[i].length; j++) {
         console.log(towerArray[i][j])
         
+
+
+
+
+
     }
 }
 
@@ -108,7 +113,13 @@ Conditionals
 
 
 
-
-
-
 */
+
+
+canvas.addEventListener('click', function(event) {
+    console.log('clicked in browser', event.clientX, event.clientY)
+    let {x,y} = canvas.getBoundingClientRect()
+    console.log('canvas top left corner', x, y)
+    console.log('where we clicked in canvas', event.clientX - x, event.clientY - y)
+    console.log('index of array', Math.floor((event.clientY - y) / 71.4), Math.floor((event.clientX - x)/100))
+})
