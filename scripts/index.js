@@ -9,7 +9,7 @@ let towerArray = [
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
-    [null, null, null, null, null, null, null, null],
+    [null, null, true, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
 ]
@@ -41,6 +41,25 @@ function stokeLineVert(ctx, y) {
     ctx.lineTo(800, y * 71.4);
     ctx.stroke();
     ctx.closePath();
+}
+
+let circleWidth = (canvas.width / 8) / 2;
+let circleHeight = (canvas.height / 7) / 2;
+
+//Canvas circle 
+ctx.beginPath();
+ctx.arc(circleWidth, circleHeight, 25, 0, Math.PI * 2);
+ctx.fillStyle = 'blue';
+ctx.fill();
+ctx.stroke();
+
+// --------------------
+
+for (let i = 0; i < towerArray.length; i++) {
+    for (let j = 0; j < towerArray[i].length; j++) {
+        console.log(towerArray[i][j])
+        
+    }
 }
 
 // Initializing both players
