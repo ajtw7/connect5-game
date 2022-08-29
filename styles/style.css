@@ -1,0 +1,16 @@
+.main {
+    background-color: salmon;
+    text-align: center;
+}
+
+
+
+#myCanvas {
+    border: 1px solid black;
+}
+
+.canvas-div {
+    display: flex;
+    justify-content: center;
+}
+

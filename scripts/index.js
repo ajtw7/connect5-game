@@ -1,4 +1,109 @@
+const canvas = document.querySelector("#myCanvas")
+// console.log(canvas)
+const ctx = canvas.getContext('2d')
+
+// The first horizontal line
+ctx.beginPath();
+ctx.moveTo(100,0);
+ctx.lineTo(100,500);
+ctx.stroke();
+ctx.closePath();
+
+// The second horizontal line
+ctx.beginPath();
+ctx.moveTo(200,0);
+ctx.lineTo(200,500);
+ctx.stroke();
+ctx.closePath();
+
+// The third horizontal line
+ctx.beginPath();
+ctx.moveTo(300,0);
+ctx.lineTo(300,500);
+ctx.stroke();
+ctx.closePath();
+
+// The fourth horizontal line
+ctx.beginPath();
+ctx.moveTo(400,0);
+ctx.lineTo(400,500);
+ctx.stroke();
+ctx.closePath();
+
+// The fifth horizontal line
+ctx.beginPath();
+ctx.moveTo(500,0);
+ctx.lineTo(500,500);
+ctx.stroke();
+ctx.closePath();
+
+// The sixth horizontal line
+ctx.beginPath();
+ctx.moveTo(600,0);
+ctx.lineTo(600,500);
+ctx.stroke();
+ctx.closePath();
+
+// The seventh horizontal line
+ctx.beginPath();
+ctx.moveTo(700,0);
+ctx.lineTo(700,500);
+ctx.stroke();
+ctx.closePath();
+
+// ---------------------------
+
+// Vertical Line 01
+ctx.beginPath();
+ctx.moveTo(0, 71);
+ctx.lineTo(800, 71);
+ctx.stroke();
+ctx.closePath();
+
+// Vertical Line 02
+ctx.beginPath();
+ctx.moveTo(0, 142);
+ctx.lineTo(800, 142);
+ctx.stroke();
+ctx.closePath();
+
+// Vertical Line 03
+ctx.beginPath();
+ctx.moveTo(0, 213);
+ctx.lineTo(800, 213);
+ctx.stroke();
+ctx.closePath();
+
+// Vertical Line 04
+ctx.beginPath();
+ctx.moveTo(0, 284);
+ctx.lineTo(800, 284);
+ctx.stroke();
+ctx.closePath();
+
+// Vertical Line 05
+ctx.beginPath();
+ctx.moveTo(0, 355);
+ctx.lineTo(800, 355);
+ctx.stroke();
+ctx.closePath();
+
+// Vertical Line 06
+ctx.beginPath();
+ctx.moveTo(0, 426);
+ctx.lineTo(800, 426);
+ctx.stroke();
+ctx.closePath();
+
+
+
+
+
+
+
+
 // Initializing the main game space with 7 columns and 8 rows (56 positions).
+console.log('WASSUPPP')
 
 let tower = [
     row1 = [{
