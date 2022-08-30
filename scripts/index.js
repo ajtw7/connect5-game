@@ -10,22 +10,14 @@ let towerArray = [
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
-    [null, null, true, null, null, null, null, null],
+    [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
 ]
 
 // console.log(towerArray[2][0])
 
-// const intervalId = setInterval(function () {
-//     // loop through 2D array
-//     console.log('hi')
-//     for (let i = 0; i < towerArray.length; i++) {
-//         for (let j = 0; j < towerArray[i].length; j++) {
-//             console.log(towerArray[i][j])
-//         }
-//     }
-// }, 100000)
+
 
 // for loop to draw vertical lines
 for (let x = 0; x < towerArray.length; x++) {
@@ -97,7 +89,7 @@ const scoreboard = {
 
 
 // "Click" event listener to add shapes into spaces
-
+let currentTurn = 'blue';
 canvas.addEventListener('click', function (event) {
     console.log('clicked in browser', event.clientX, event.clientY)
     let {x,y} = canvas.getBoundingClientRect()
@@ -113,22 +105,34 @@ canvas.addEventListener('click', function (event) {
     let arrayX = Math.floor((event.clientX - x) / 100)
     let arrayY = Math.floor((event.clientY - y) / 71.4)
 
-
-    if (arrayX === 0 && arrayY === 5 || arrayX === 6 && arrayY === 5) {
-        console.log('yes')
-        ctx.beginPath();
-        ctx.arc(canvasCoordX, canvasCoordY, 25, 0, Math.PI * 2);
-        ctx.fillStyle = 'blue';
-        ctx.fill();
-        ctx.stroke();
+    if(currentTurn == 'blue'){
+        towerArray[arrayY][arrayX] = 'blue'
+        currentTurn = 'red'
+        alert("now red's turn")
     } else {
-        console.log('no')
-        ctx.beginPath();
-        ctx.arc(canvasCoordX, canvasCoordY, 25, 0, Math.PI * 2);
-        ctx.fillStyle = 'red';
-        ctx.fill();
-        ctx.stroke();
+        towerArray[arrayY][arrayX] = 'red'
+        currentTurn = 'blue'
+        alert("now blue's turn")
     }
+    
+    console.log(towerArray)
+
+
+    // if (arrayX === 0 && arrayY === 5 || arrayX === 6 && arrayY === 5) {
+    //     console.log('yes')
+    //     ctx.beginPath();
+    //     ctx.arc(canvasCoordX, canvasCoordY, 25, 0, Math.PI * 2);
+    //     ctx.fillStyle = 'blue';
+    //     ctx.fill();
+    //     ctx.stroke();
+    // } else {
+    //     console.log('no')
+    //     ctx.beginPath();
+    //     ctx.arc(canvasCoordX, canvasCoordY, 25, 0, Math.PI * 2);
+    //     ctx.fillStyle = 'red';
+    //     ctx.fill();
+    //     ctx.stroke();
+    // }
 
 
 
@@ -137,6 +141,35 @@ canvas.addEventListener('click', function (event) {
 
 
 })
+
+const intervalId = setInterval(function () {
+    // loop through 2D array
+    console.log('hi')
+    ctx.clearRect(0,0,canvas.width, canvas.height)
+    for (let x = 0; x < towerArray.length; x++) {
+        strokeLineHoriz(ctx, x + 1) // dont want the array to start at 0
+    }
+    for (let y = 0; y < towerArray[0].length; y++) {
+        stokeLineVert(ctx, y + 1)
+    }
+    for (let i = 0; i < towerArray.length; i++) {
+        for (let j = 0; j < towerArray[i].length; j++) {
+            if(towerArray[i][j] == 'blue'){
+                ctx.beginPath();
+                ctx.arc(j * 100 + 50, i * 71.4 + 35.7, 25, 0, Math.PI * 2);
+                ctx.fillStyle = 'blue';
+                ctx.fill();
+                ctx.stroke();
+            } else if (towerArray[i][j] == 'red'){
+                ctx.beginPath();
+                ctx.arc(j * 100 + 50, i * 71.4 + 35.7, 25, 0, Math.PI * 2);
+                ctx.fillStyle = 'red';
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+    }
+}, 1000)
 
 /* 
     Conditionals

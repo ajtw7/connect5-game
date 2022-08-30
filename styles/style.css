@@ -11,6 +11,23 @@
 
 .canvas-div {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    
 }
 
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 350px;
+    height: 300px;
+    /* background: red; */
+    border: 1px solid black;
+    /* margin-right: 15px; */
+}
+
+.scoreboard > h1 {
+    border-bottom: 1px solid salmon;
+}
