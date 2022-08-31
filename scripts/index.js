@@ -90,7 +90,7 @@ let playerTurn = document.querySelector('#playerTurn')
 // Algorithm to check for possible WIN scenarios where player lines five medallions in a row
 // "c" represents the counter
 
-function checkForWin(x, y, color) {
+function checkForWinLeftRightDiag(x, y, color) {
     /*
     check left-right diagonal win scenarios
     on the canvas Y is vert, X is horiz
@@ -104,6 +104,13 @@ function checkForWin(x, y, color) {
         return true;
     }
 
+    
+
+    
+
+}
+
+function checkForWinRightLeftDiag(x, y, color){
     /* 
     check right-left diagonal win scenarios
     (subtract from the x axis to shift the function right as it scans the array)    
@@ -117,11 +124,16 @@ function checkForWin(x, y, color) {
         }
         return true;
     }
-
+    
+}
+function checkForWinVertical(x, y, color){
     // check vertical win scenarios  
-    if (y + 4 <= towerArray.length - 1 && (x + 4 <= towerArray[y].length - 1)) {
+    console.log(y, y + 4, towerArray.length, towerArray.length - 1)
+
+    if (y + 4 <= towerArray.length - 1) {
+        console.log('hi')
         for (let c = 0; c < 5; c++) {
-            if (towerArray[y + 1][x] != color) {
+            if (towerArray[y + c][x] != color) {
                 return false;
             }
         }
@@ -129,9 +141,11 @@ function checkForWin(x, y, color) {
     }
 
     return false;
-
+    
 }
-
+function checkForWinHorizontal(x, y, color){
+    
+}
 
 // "Click" event listener to add shapes into spaces
 let currentTurn = 'blue';
@@ -154,7 +168,8 @@ canvas.addEventListener('click', function (event) {
         towerArray[arrayY][arrayX] = 'blue'
         for (let i = 0; i < towerArray.length; i++) {
             for (let j = 0; j < towerArray[i].length; j++) {
-                if (checkForWin(j, i, 'blue')) {
+                console.log('x', j, 'y', i)
+                if (checkForWinLeftRightDiag(j, i, 'blue') || checkForWinRightLeftDiag(j,i,'blue') || checkForWinVertical(j,i,'blue')) {
                     alert('blue wins')
                 }
             }
@@ -167,7 +182,7 @@ canvas.addEventListener('click', function (event) {
         towerArray[arrayY][arrayX] = 'red'
         for (let i = 0; i < towerArray.length; i++) {
             for (let j = 0; j < towerArray[i].length; j++) {
-                if (checkForWin(j, i, 'red')) {
+                if (checkForWinLeftRightDiag(j, i, 'red') || checkForWinRightLeftDiag(j,i,'red') || checkForWinVertical(j,i,'red')) {
                     alert('red wins')
                 }
             }
@@ -181,7 +196,7 @@ canvas.addEventListener('click', function (event) {
 })
 
 const intervalId = setInterval(function () {
-    console.log('hi')
+    //console.log('hi')
     // clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
