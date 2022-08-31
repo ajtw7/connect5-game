@@ -104,17 +104,13 @@ function checkForWinLeftRightDiag(x, y, color) {
         return true;
     }
 
-    
-
-    
-
 }
 
-function checkForWinRightLeftDiag(x, y, color){
-    /* 
-    check right-left diagonal win scenarios
-    (subtract from the x axis to shift the function right as it scans the array)    
-    */
+/* 
+check right-left diagonal win scenarios
+(subtract from the x axis to shift the function right as it scans the array)    
+*/
+function checkForWinRightLeftDiag(x, y, color) {
 
     if ((y + 4 <= towerArray.length - 1) && (x - 4 >= 0)) {
         for (let c = 0; c < 5; c++) {
@@ -124,9 +120,11 @@ function checkForWinRightLeftDiag(x, y, color){
         }
         return true;
     }
-    
+
 }
-function checkForWinVertical(x, y, color){
+
+// check for vertical win scenarios
+function checkForWinVertical(x, y, color) {
     // check vertical win scenarios  
     console.log(y, y + 4, towerArray.length, towerArray.length - 1)
 
@@ -139,12 +137,23 @@ function checkForWinVertical(x, y, color){
         }
         return true;
     }
-
     return false;
-    
+
 }
-function checkForWinHorizontal(x, y, color){
-    
+
+// check for horizontal win scenarios
+function checkForWinHorizontal(x, y, color) {
+    if (x + 4 <= towerArray[y].length - 1) {
+        console.log('hi')
+        for (let c = 0; c < 5; c++) {
+            if (towerArray[y][x + c] != color) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+
 }
 
 // "Click" event listener to add shapes into spaces
@@ -169,7 +178,8 @@ canvas.addEventListener('click', function (event) {
         for (let i = 0; i < towerArray.length; i++) {
             for (let j = 0; j < towerArray[i].length; j++) {
                 console.log('x', j, 'y', i)
-                if (checkForWinLeftRightDiag(j, i, 'blue') || checkForWinRightLeftDiag(j,i,'blue') || checkForWinVertical(j,i,'blue')) {
+                // check for all possible
+                if (checkForWinLeftRightDiag(j, i, 'blue') || checkForWinRightLeftDiag(j, i, 'blue') || checkForWinVertical(j, i, 'blue') || checkForWinHorizontal(j, i, 'blue')) {
                     alert('blue wins')
                 }
             }
@@ -182,7 +192,7 @@ canvas.addEventListener('click', function (event) {
         towerArray[arrayY][arrayX] = 'red'
         for (let i = 0; i < towerArray.length; i++) {
             for (let j = 0; j < towerArray[i].length; j++) {
-                if (checkForWinLeftRightDiag(j, i, 'red') || checkForWinRightLeftDiag(j,i,'red') || checkForWinVertical(j,i,'red')) {
+                if (checkForWinLeftRightDiag(j, i, 'red') || checkForWinRightLeftDiag(j, i, 'red') || checkForWinVertical(j, i, 'red') || checkForWinHorizontal(j, i, 'red')) {
                     alert('red wins')
                 }
             }
