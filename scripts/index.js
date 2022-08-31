@@ -15,11 +15,8 @@ let towerArray = [
     [null, null, null, null, null, null, null, null],
 ]
 
-// console.log(towerArray[2][0])
 
-
-
-// for loop to draw vertical lines
+// for loop to draw horizontal lines
 for (let x = 0; x < towerArray.length; x++) {
     strokeLineHoriz(ctx, x + 1) // dont want the array to start at 0
 }
@@ -33,7 +30,7 @@ function strokeLineHoriz(ctx, x) {
 
 }
 
-// for loop to draw horizontal lines
+// for loop to draw vertical lines
 for (let y = 0; y < towerArray[0].length; y++) {
     stokeLineVert(ctx, y + 1)
 }
@@ -84,28 +81,50 @@ class medallion {
 const scoreboard = {
     medallionsPlayed: 0,
     spacesRemaining: 56,
-    update: function() {
+    update: function () {
 
     }
 }
 
-function checkForWin(x,y,color){
-    if(!(y + 5 > towerArray.length) && !(x + 5 > towerArray[y].length)){ //check left-right diagonal
-      for(let c = 0; c < 5; c++){
-        if(towerArray[y + c][x + c] != color){
-          return false;
+let medallionsPlayed = document.querySelector('#medallionsPlayed');
+console.log(medallionsPlayed)
+let spacesRemaining = document.querySelector('#spacesRem');
+console.log(spacesRemaining)
+
+
+// Algorithm to check for possible WIN scenarios where player lines five medallions in a row
+// "c" represents the counter
+
+function checkForWin(x, y, color) {
+    if ((y + 4 <= towerArray.length - 1) && (x + 4 <= towerArray[y].length - 1)) { //check left-right diagonal
+        for (let c = 0; c < 5; c++) {
+            if (towerArray[y + c][x + c] != color) {
+                return false;
+            }
         }
-      }
-      return true;
+        return true;
+    } 
+    if ((y + 4 <= towerArray.length - 1) && (x - 4 >= 0)) { //check right-left diagonal
+        for (let c = 0; c < 5; c++) {
+            if (towerArray[y + c][x - c] != color) {
+                return false;
+            }
+        }
+        return true;
     }
+
     return false;
-  }
+}
+
 
 // "Click" event listener to add shapes into spaces
 let currentTurn = 'blue';
 canvas.addEventListener('click', function (event) {
     console.log('clicked in browser', event.clientX, event.clientY)
-    let {x,y} = canvas.getBoundingClientRect()
+    let {
+        x,
+        y
+    } = canvas.getBoundingClientRect()
     console.log('canvas top left corner', x, y)
     console.log('where we clicked in canvas', event.clientX - x, event.clientY - y)
     console.log('index of array', Math.floor((event.clientY - y) / 71.4), Math.floor((event.clientX - x) / 100))
@@ -115,11 +134,11 @@ canvas.addEventListener('click', function (event) {
     let arrayY = Math.floor((event.clientY - y) / 71.4)
 
     // If it is player 1's turn, alert player 2 they are next
-    if(currentTurn == 'blue'){
+    if (currentTurn == 'blue') {
         towerArray[arrayY][arrayX] = 'blue'
         for (let i = 0; i < towerArray.length; i++) {
             for (let j = 0; j < towerArray[i].length; j++) {
-                if(checkForWin(j, i, 'blue')){
+                if (checkForWin(j, i, 'blue')) {
                     alert('blue wins')
                 }
             }
@@ -127,11 +146,11 @@ canvas.addEventListener('click', function (event) {
         currentTurn = 'red'
         alert("now red's turn")
     } else {
-    // If it is player 2's turn, alert player 1 they are next
+        // If it is player 2's turn, alert player 1 they are next
         towerArray[arrayY][arrayX] = 'red'
         for (let i = 0; i < towerArray.length; i++) {
             for (let j = 0; j < towerArray[i].length; j++) {
-                if(checkForWin(j, i, 'red')){
+                if (checkForWin(j, i, 'red')) {
                     alert('red wins')
                 }
             }
@@ -139,14 +158,14 @@ canvas.addEventListener('click', function (event) {
         currentTurn = 'blue'
         alert("now blue's turn")
     }
-    
+
     console.log(towerArray)
 })
 
 const intervalId = setInterval(function () {
     console.log('hi')
     // clear the canvas
-    ctx.clearRect(0,0,canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     // redraw the lines after ever clearance
     for (let x = 0; x < towerArray.length; x++) {
@@ -161,14 +180,14 @@ const intervalId = setInterval(function () {
         for (let j = 0; j < towerArray[i].length; j++) {
 
             // if it is player 1's turn, draw a "blue" medallion 
-            if(towerArray[i][j] == 'blue'){  
+            if (towerArray[i][j] == 'blue') {
                 ctx.beginPath();
                 ctx.arc(j * 100 + 50, i * 71.4 + 35.7, 25, 0, Math.PI * 2);
                 ctx.fillStyle = 'blue';
                 ctx.fill();
                 ctx.stroke();
-            // if it is player 1's turn, draw a "red" medallion
-            } else if (towerArray[i][j] == 'red'){  
+                // if it is player 1's turn, draw a "red" medallion
+            } else if (towerArray[i][j] == 'red') {
                 ctx.beginPath();
                 ctx.arc(j * 100 + 50, i * 71.4 + 35.7, 25, 0, Math.PI * 2);
                 ctx.fillStyle = 'red';
@@ -176,9 +195,9 @@ const intervalId = setInterval(function () {
                 ctx.stroke();
             }
 
-            
 
-            
+
+
         }
     }
 }, 1000) // cycle every second
