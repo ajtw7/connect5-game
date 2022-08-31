@@ -45,15 +45,6 @@ function stokeLineVert(ctx, y) {
     ctx.closePath();
 }
 
-// let circleWidth = (canvas.width / 8) / 2;
-// let circleHeight = (canvas.height / 7) / 2;
-
-// ctx.beginPath();
-// ctx.arc(circleWidth, circleHeight, 25, 0, Math.PI * 2);
-// ctx.fillStyle = 'blue';
-// ctx.fill();
-// ctx.stroke();
-
 // --------------------
 
 // Initializing both players
@@ -78,33 +69,47 @@ class medallion {
     }
 }
 
-const scoreboard = {
-    medallionsPlayed: 0,
-    spacesRemaining: 56,
-    update: function () {
+const updateScoreBoard = (color) => {
+    medallionsPlayed.innerHTML++;
+    spacesRemaining.innerHTML--;
+    /* if (color === 'blue') {
+        playerTurn.innerHTML = 'Player 1'
+    } */
 
-    }
 }
 
 let medallionsPlayed = document.querySelector('#medallionsPlayed');
 console.log(medallionsPlayed)
+
 let spacesRemaining = document.querySelector('#spacesRem');
 console.log(spacesRemaining)
+
+let playerTurn = document.querySelector('#playerTurn')
 
 
 // Algorithm to check for possible WIN scenarios where player lines five medallions in a row
 // "c" represents the counter
 
 function checkForWin(x, y, color) {
-    if ((y + 4 <= towerArray.length - 1) && (x + 4 <= towerArray[y].length - 1)) { //check left-right diagonal
+    /*
+    check left-right diagonal win scenarios
+    on the canvas Y is vert, X is horiz
+    */
+    if ((y + 4 <= towerArray.length - 1) && (x + 4 <= towerArray[y].length - 1)) {
         for (let c = 0; c < 5; c++) {
             if (towerArray[y + c][x + c] != color) {
                 return false;
             }
         }
         return true;
-    } 
-    if ((y + 4 <= towerArray.length - 1) && (x - 4 >= 0)) { //check right-left diagonal
+    }
+
+    /* 
+    check right-left diagonal win scenarios
+    (subtract from the x axis to shift the function right as it scans the array)    
+    */
+
+    if ((y + 4 <= towerArray.length - 1) && (x - 4 >= 0)) {
         for (let c = 0; c < 5; c++) {
             if (towerArray[y + c][x - c] != color) {
                 return false;
@@ -113,7 +118,18 @@ function checkForWin(x, y, color) {
         return true;
     }
 
+    // check vertical win scenarios  
+    if (y + 4 <= towerArray.length - 1 && (x + 4 <= towerArray[y].length - 1)) {
+        for (let c = 0; c < 5; c++) {
+            if (towerArray[y + 1][x] != color) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     return false;
+
 }
 
 
@@ -144,6 +160,7 @@ canvas.addEventListener('click', function (event) {
             }
         }
         currentTurn = 'red'
+        playerTurn.innerHTML = 'Player 2'
         alert("now red's turn")
     } else {
         // If it is player 2's turn, alert player 1 they are next
@@ -156,10 +173,11 @@ canvas.addEventListener('click', function (event) {
             }
         }
         currentTurn = 'blue'
+        playerTurn.innerHTML = 'Player 1'
         alert("now blue's turn")
     }
-
-    console.log(towerArray)
+    updateScoreBoard()
+    // console.log(towerArray)
 })
 
 const intervalId = setInterval(function () {
@@ -200,6 +218,7 @@ const intervalId = setInterval(function () {
 
         }
     }
+
 }, 1000) // cycle every second
 
 /* 
