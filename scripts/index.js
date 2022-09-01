@@ -63,6 +63,12 @@ const updateScoreBoard = (color) => {
     medallionsPlayed.innerHTML++;
     spacesRemaining.innerHTML--;
 
+    if (spacesRemaining.innerHTML == 0) {
+        alert('SORRY. GAME OVER :(')
+        window.location.reload();
+    }
+
+
 }
 
 // const updateAfterWin = function updateAfterWin () {
@@ -224,7 +230,6 @@ canvas.addEventListener('click', function (event) {
     }
 
 
-
     updateScoreBoard()
     // console.log(towerArray)
 })
@@ -290,7 +295,6 @@ const intervalId = setInterval(function () {
     2) if any column/row is full, player must drop medallion elsewhere.
         2a) if a space is occupied, it must be flipped from "null" to TRUE 
     
-    3) if player positions 5 medallions of the same color in a row, said player win the game
     
     4) if medallionsPlayed = 56 or if spacesRemaining = 0, the game is over
     
