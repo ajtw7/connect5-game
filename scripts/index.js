@@ -181,7 +181,7 @@ canvas.addEventListener('click', function (event) {
         }
         currentTurn = 'red'
         playerTurn.innerHTML = 'Player 2'
-        alert("now red's turn")
+        // alert("now red's turn")
     } else {
         /* check if squares beneath are empty or bottom
          check arrayY + 1 because it prevents the arrayY check from reaching the bottom (towerArray.length)
@@ -202,7 +202,7 @@ canvas.addEventListener('click', function (event) {
         }
         currentTurn = 'blue'
         playerTurn.innerHTML = 'Player 1'
-        alert("now blue's turn")
+        // alert("now blue's turn")
     }
 
 
