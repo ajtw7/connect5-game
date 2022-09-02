@@ -45,20 +45,18 @@ function stokeLineVert(ctx, y) {
     ctx.closePath();
 }
 
-// --------------------
 
-// Initializing both players
-const playerOne = {
-    medallionsPlayed: 0,
-    stack: function () {},
-}
+// Initialize Scoreboard items
+let medallionsPlayed = document.querySelector('#medallionsPlayed');
+// console.log(medallionsPlayed)
 
-const playerTwo = {
-    medallionsPlayed: 0,
-    stack: function () {},
-}
+let spacesRemaining = document.querySelector('#spacesRem');
+// console.log(spacesRemaining)
+
+let playerTurn = document.querySelector('#playerTurn');
 
 
+// Function to update scoreboard
 const updateScoreBoard = (color) => {
     medallionsPlayed.innerHTML++;
     spacesRemaining.innerHTML--;
@@ -70,28 +68,6 @@ const updateScoreBoard = (color) => {
 
 
 }
-
-// const updateAfterWin = function updateAfterWin () {
-//     // clear the canvas
-//     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-//     // redraw the lines after ever clearance
-//     for (let x = 0; x < towerArray.length; x++) {
-//         strokeLineHoriz(ctx, x + 1) // dont want the array to start at 0
-//     }
-
-//     for (let y = 0; y < towerArray[0].length; y++) {
-//         stokeLineVert(ctx, y + 1)
-//     }
-// }
-
-let medallionsPlayed = document.querySelector('#medallionsPlayed');
-// console.log(medallionsPlayed)
-
-let spacesRemaining = document.querySelector('#spacesRem');
-// console.log(spacesRemaining)
-
-let playerTurn = document.querySelector('#playerTurn')
 
 
 // Algorithm to check for possible WIN scenarios where player lines five medallions in a row
@@ -231,18 +207,7 @@ canvas.addEventListener('click', function (event) {
 
 
     updateScoreBoard()
-    // console.log(towerArray)
 })
-
-// Skip space that is occupied
-
-// function skipIfOccupied() {
-//     if (towerArray[i][j] == 'blue' || 'red') {
-//         canvas.removeEventListener('click', function (event){})
-//     }
-
-// }
-
 
 
 const intervalId = setInterval(function () {
@@ -281,25 +246,6 @@ const intervalId = setInterval(function () {
                 ctx.stroke();
             }
         }
-        // skipIfOccupied()
     }
 
 }, 1000) // cycle every second
-
-/* 
-    Conditionals
-    
-    1) if playerOne, drops a medallion, into a space, playerTwo must go next.
-            1a) scoreboard must be updated
-    
-    2) if any column/row is full, player must drop medallion elsewhere.
-        2a) if a space is occupied, it must be flipped from "null" to TRUE 
-    
-    
-    4) if medallionsPlayed = 56 or if spacesRemaining = 0, the game is over
-    
-    5)
-    
-    
-    
-    */
